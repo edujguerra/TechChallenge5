@@ -1,0 +1,6 @@
+br\com\fiap\model\ProdutoTest.class
+br\com\fiap\service\ProdutoServiceTest.class
+br\com\fiap\controller\ProdutoControllerTest.class
+br\com\fiap\MsProdutoApplicationTests.class
+br\com\fiap\Helper\ProdutoHelper.class
+br\com\fiap\repository\ProdutoRepositoryTest.class

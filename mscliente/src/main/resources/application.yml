@@ -1,0 +1,16 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    #url: jdbc:mysql://dbcliente:3306/clientes?useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://127.0.0.1:3305/clientes
+    username: root
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQLDialect
+api:
+  security:
+    token:
+      secret=${JWT_SECRET:66e48fcca777ed0975ff8a7f51198db678aea9661298bcd34adace1ecefa2cce}:

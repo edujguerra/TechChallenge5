@@ -1,0 +1,6 @@
+br\com\fiap\repository\ProdutoRepository.class
+br\com\fiap\config\SwaggerConfig.class
+br\com\fiap\MsProdutoApplication.class
+br\com\fiap\controller\ProdutoController.class
+br\com\fiap\service\ProdutoService.class
+br\com\fiap\model\Produto.class

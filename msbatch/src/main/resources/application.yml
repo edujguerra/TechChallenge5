@@ -1,0 +1,20 @@
+data:
+  path: 'C:\FIAP\carrinhos\msbatch\src\main\resources\'
+server:
+  port: 8089
+spring:
+  datasource:
+    url: jdbc:mysql://dbproduto:3306/produtos?useSSL=false&serverTimezone=UTC
+    #url: jdbc:mysql://127.0.0.1:3307/produtos
+    username: root
+    password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.
+  sql:
+    init:
+      mode: always
+  batch:
+    jdbc:
+      initialize-schema: always

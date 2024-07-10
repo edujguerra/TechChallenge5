@@ -1,0 +1,12 @@
+server:
+  port: 8082
+spring:
+  datasource:
+    #url: jdbc:mysql://dbproduto:3306/produtos?useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://127.0.0.1:3307/produtos
+    username: root
+    password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQLDialect
