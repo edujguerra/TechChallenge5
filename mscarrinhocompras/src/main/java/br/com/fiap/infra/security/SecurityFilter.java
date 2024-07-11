@@ -22,9 +22,16 @@ public class SecurityFilter extends OncePerRequestFilter {
     @Autowired
     private TokenService tokenService;
 
+    private String tokenBruto = "";
+
+    public String getTokenBruto() {
+        return tokenBruto;
+    }
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         var tokenJWT = recuperarToken(request);
+        this.tokenBruto = tokenJWT;
 
         if (tokenJWT != null) {
             var subject = tokenService.getSubject(tokenJWT);

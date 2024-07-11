@@ -1,15 +1,21 @@
 package br.com.fiap.controller;
 
-import br.com.fiap.model.Enum.StatusPedidoEnum;
+import br.com.fiap.infra.security.SecurityFilter;
 import br.com.fiap.model.CarrinhoCompras;
 import br.com.fiap.service.CarrinhoComprasService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -19,6 +25,12 @@ public class CarrinhoComprasController {
 
     @Autowired
     private CarrinhoComprasService carrinhoComprasService;
+
+    @Autowired
+    private SecurityFilter securityFilter;
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     public CarrinhoComprasController(CarrinhoComprasService carrinhoComprasService) {
         this.carrinhoComprasService = carrinhoComprasService;
@@ -42,6 +54,20 @@ public class CarrinhoComprasController {
     @GetMapping("/{carrinhoComprasId}")
     public CarrinhoCompras obterCarrinhoComprasPorId(@PathVariable Integer carrinhoComprasId) {
         return carrinhoComprasService.obterItensCarrinho(carrinhoComprasId);
+    }
+
+    @GetMapping("/teste")
+    public String obterCarrinhoComprasPorId() {
+        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
+        headers.add("Authorization", securityFilter.getTokenBruto());
+        RequestEntity<Object> request = new RequestEntity<>(
+                headers, HttpMethod.GET,
+                URI.create("http://127.0.0.1:8082/api/produtos/teste"));
+        ResponseEntity<String> response = restTemplate.exchange(request, String.class);
+
+        return "Ok passou: " + securityFilter.getTokenBruto()
+                + "  Produto : " + response.getBody();
+
     }
 
     @GetMapping("/status/{statusCarrinhoCompras}")
