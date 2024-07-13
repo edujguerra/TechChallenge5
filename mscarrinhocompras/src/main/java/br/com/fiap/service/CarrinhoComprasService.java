@@ -1,5 +1,6 @@
 package br.com.fiap.service;
 
+import br.com.fiap.infra.security.SecurityFilter;
 import br.com.fiap.model.Enum.StatusPedidoEnum;
 import br.com.fiap.model.ItemCarrinho;
 import br.com.fiap.model.CarrinhoCompras;
@@ -7,12 +8,18 @@ import br.com.fiap.repository.CarrinhoComprasRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
+import java.net.URI;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -23,6 +30,9 @@ public class CarrinhoComprasService {
     private CarrinhoComprasRepository carrinhoComprasRepository;
 
     @Autowired
+    private SecurityFilter securityFilter;
+
+    @Autowired
     private RestTemplate restTemplate;
 
     @Autowired
@@ -31,9 +41,10 @@ public class CarrinhoComprasService {
     private static final String RETIRAR_ESTOQUE = "retirar";
     private static final String INSERIR_ESTOQUE = "inserir";
 
-    public CarrinhoComprasService(CarrinhoComprasRepository carrinhoComprasRepository, RestTemplate restTemplate,
-                                  ObjectMapper objectMapper) {
+    public CarrinhoComprasService(CarrinhoComprasRepository carrinhoComprasRepository, SecurityFilter securityFilter,
+                                  RestTemplate restTemplate, ObjectMapper objectMapper) {
         this.carrinhoComprasRepository = carrinhoComprasRepository;
+        this.securityFilter = securityFilter;
         this.restTemplate = restTemplate;
         this.objectMapper = objectMapper;
     }
@@ -103,29 +114,27 @@ public class CarrinhoComprasService {
         return carrinhoCompras;
     }
 
-//    public CarrinhoCompras incluirEntregador(Integer carrinhoComprasId, Integer entregadorId) {
-//        CarrinhoCompras carrinhoCompras = carrinhoComprasRepository.findById(carrinhoComprasId).orElse(null);
-//
-//        if (carrinhoCompras != null) {
-//            carrinhoCompras.setEntregadorId(entregadorId);
-//            carrinhoComprasRepository.save(carrinhoCompras);
-//        } else {
-//            throw new NoSuchElementException("CarrinhoCompras com código {} não encontrado" + carrinhoComprasId);
-//        }
-//
-//        return carrinhoCompras;
-//    }
-
     private boolean verificarDisponibilidadeProdutos(List<ItemCarrinho> itensCarrinhos) {
+
         for (ItemCarrinho itemCarrinho : itensCarrinhos) {
             Integer idProduto = itemCarrinho.getIdProduto();
             int quantidade = itemCarrinho.getQuantidade();
 
-            ResponseEntity<String> response = restTemplate.getForEntity(
-                    "http://msprodutos:8082/api/produtos/{produtoId}",
-                    String.class,
-                    idProduto
-            );
+            MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
+            headers.add("Authorization", securityFilter.getTokenBruto());
+
+            URI uri = UriComponentsBuilder.fromUriString("http://127.0.0.1:8082/api/produtos/{produtoId}")
+                    .buildAndExpand(idProduto)
+                    .toUri();
+
+            RequestEntity<Object> request = new RequestEntity<>(headers, HttpMethod.GET, uri);
+
+            ResponseEntity<String> response = restTemplate.exchange(request, String.class);
+//            ResponseEntity<String> response = restTemplate.getForEntity(
+//                    "http://msprodutos:8082/api/produtos/{produtoId}",
+//                    String.class,
+//                    idProduto
+//            );
 
             if (response.getStatusCode() == HttpStatus.NOT_FOUND) {
                 throw new NoSuchElementException("Produto não encontrado");
@@ -152,11 +161,21 @@ public class CarrinhoComprasService {
             Integer idProduto = itemCarrinho.getIdProduto();
             int quantidade = itemCarrinho.getQuantidade();
 
-            ResponseEntity<String> response = restTemplate.getForEntity(
-                    "http://msprodutos:8082/api/produtos/{idProduto}",
-                    String.class,
-                    idProduto
-            );
+            MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
+            headers.add("Authorization", securityFilter.getTokenBruto());
+
+            URI uri = UriComponentsBuilder.fromUriString( "http://127.0.0.1:8082/api/produtos/{idProduto}")
+                    .buildAndExpand(idProduto)
+                    .toUri();
+
+            RequestEntity<Object> request = new RequestEntity<>(headers, HttpMethod.GET, uri);
+
+            ResponseEntity<String> response = restTemplate.exchange(request, String.class);
+//            ResponseEntity<String> response = restTemplate.getForEntity(
+//                    "http://msprodutos:8082/api/produtos/{idProduto}",
+//                    String.class,
+//                    idProduto
+//            );
             if (response.getStatusCode() == HttpStatus.OK) {
                 try {
                     JsonNode produtoJson = objectMapper.readTree(response.getBody());
@@ -176,13 +195,23 @@ public class CarrinhoComprasService {
             Integer idProduto = itemCarrinho.getIdProduto();
             int quantidade = itemCarrinho.getQuantidade();
 
-            restTemplate.put(
-                    "http://msprodutos:8082/api/produtos/atualizar/estoque/{idProduto}/{quantidade}/{entradaSaida}",
-                    null,
-                    idProduto,
-                    quantidade,
-                    entradaSaida
-            );
+            MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
+            headers.add("Authorization", securityFilter.getTokenBruto());
+
+            URI uri = UriComponentsBuilder.fromUriString("http://127.0.0.1:8082/api/produtos/atualizar/estoque/{idProduto}/{quantidade}/{entradaSaida}")
+                    .buildAndExpand(idProduto, quantidade, entradaSaida)
+                    .toUri();
+
+            RequestEntity<Object> request = new RequestEntity<>(headers, HttpMethod.PUT, uri);
+
+            ResponseEntity<String> response = restTemplate.exchange(request, String.class);
+//            restTemplate.put(
+//                    "http://msprodutos:8082/api/produtos/atualizar/estoque/{idProduto}/{quantidade}/{entradaSaida}",
+//                    null,
+//                    idProduto,
+//                    quantidade,
+//                    entradaSaida
+//            );
         }
     }
 
