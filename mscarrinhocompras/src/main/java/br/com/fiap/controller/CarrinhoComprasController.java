@@ -93,7 +93,7 @@ public class CarrinhoComprasController {
         return carrinhoComprasService.atualizarStatus(carrinhoComprasId, status.findValue("status").asText());
     }
 
-    @GetMapping("itensCarrinho/{carrinhoComprasId}")
+    @GetMapping("/itensCarrinho/{carrinhoComprasId}")
     public ResponseEntity<?> obterItensCarrinho(@PathVariable Integer carrinhoComprasId) {
         try {
             List<ItemCarrinho> itensCarrinho = carrinhoComprasService.obterItensCarrinho(carrinhoComprasId);
