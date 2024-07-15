@@ -2,6 +2,7 @@ package br.com.fiap.controller;
 
 import br.com.fiap.infra.security.SecurityFilter;
 import br.com.fiap.model.CarrinhoCompras;
+import br.com.fiap.model.ItemCarrinho;
 import br.com.fiap.service.CarrinhoComprasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
@@ -53,11 +54,11 @@ public class CarrinhoComprasController {
 
     @GetMapping("/{carrinhoComprasId}")
     public CarrinhoCompras obterCarrinhoComprasPorId(@PathVariable Integer carrinhoComprasId) {
-        return carrinhoComprasService.obterItensCarrinho(carrinhoComprasId);
+        return carrinhoComprasService.obterCarrinhoCompras(carrinhoComprasId);
     }
 
     @GetMapping("/teste")
-    public String obterCarrinhoComprasPorId() {
+    public String obterCarrinhoComprasPorIdTeste() {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
         headers.add("Authorization", securityFilter.getTokenBruto());
         RequestEntity<Object> request = new RequestEntity<>(
@@ -67,7 +68,6 @@ public class CarrinhoComprasController {
 
         return "Ok passou: " + securityFilter.getTokenBruto()
                 + "  Produto : " + response.getBody();
-
     }
 
     @GetMapping("/status/{statusCarrinhoCompras}")
@@ -93,9 +93,17 @@ public class CarrinhoComprasController {
         return carrinhoComprasService.atualizarStatus(carrinhoComprasId, status.findValue("status").asText());
     }
 
-//    @PutMapping("/entregador/{carrinhoComprasId}/{entregadorId}")
-//    public Pedido incluirEntregador(@PathVariable Integer pedidoId, @PathVariable Integer entregadorId) {
-//        return pedidoService.incluirEntregador(pedidoId, entregadorId);
-//    }
+    @GetMapping("/itensCarrinho/{carrinhoComprasId}")
+    public ResponseEntity<?> obterItensCarrinho(@PathVariable Integer carrinhoComprasId) {
+        try {
+            List<ItemCarrinho> itensCarrinho = carrinhoComprasService.obterItensCarrinho(carrinhoComprasId);
+
+            return new ResponseEntity<>(itensCarrinho, HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nenhum Carrinho de Compras encontrado com o id do carrinho fornecido.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ocorreu um erro ao processar a solicitação.");
+        }
+    }
 
 }

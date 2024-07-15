@@ -53,7 +53,7 @@ public class CarrinhoComprasService {
         return carrinhoComprasRepository.findAll();
     }
 
-    public CarrinhoCompras obterItensCarrinho(Integer carrinhoComprasId) {
+    public CarrinhoCompras obterCarrinhoCompras(Integer carrinhoComprasId) {
         CarrinhoCompras carrinhoCompras = carrinhoComprasRepository.findById(carrinhoComprasId).orElse(null);
         if (carrinhoCompras != null) {
             return carrinhoCompras;
@@ -114,6 +114,20 @@ public class CarrinhoComprasService {
         return carrinhoCompras;
     }
 
+    public List<ItemCarrinho> obterItensCarrinho(Integer carrinhoComprasId) {
+
+        List<ItemCarrinho> listaItensCarrinho;
+        CarrinhoCompras carrinhoCompras = carrinhoComprasRepository.findById(carrinhoComprasId).orElse(null);
+
+        if (carrinhoCompras.getItensCarrinho() != null) {
+            listaItensCarrinho = carrinhoCompras.getItensCarrinho();
+        } else {
+            throw new NoSuchElementException("Carrinho de compras com código {} não encontrado" + carrinhoComprasId);
+        }
+
+        return listaItensCarrinho;
+    }
+
     private boolean verificarDisponibilidadeProdutos(List<ItemCarrinho> itensCarrinhos) {
 
         for (ItemCarrinho itemCarrinho : itensCarrinhos) {
@@ -130,11 +144,6 @@ public class CarrinhoComprasService {
             RequestEntity<Object> request = new RequestEntity<>(headers, HttpMethod.GET, uri);
 
             ResponseEntity<String> response = restTemplate.exchange(request, String.class);
-//            ResponseEntity<String> response = restTemplate.getForEntity(
-//                    "http://msprodutos:8082/api/produtos/{produtoId}",
-//                    String.class,
-//                    idProduto
-//            );
 
             if (response.getStatusCode() == HttpStatus.NOT_FOUND) {
                 throw new NoSuchElementException("Produto não encontrado");
@@ -171,11 +180,7 @@ public class CarrinhoComprasService {
             RequestEntity<Object> request = new RequestEntity<>(headers, HttpMethod.GET, uri);
 
             ResponseEntity<String> response = restTemplate.exchange(request, String.class);
-//            ResponseEntity<String> response = restTemplate.getForEntity(
-//                    "http://msprodutos:8082/api/produtos/{idProduto}",
-//                    String.class,
-//                    idProduto
-//            );
+
             if (response.getStatusCode() == HttpStatus.OK) {
                 try {
                     JsonNode produtoJson = objectMapper.readTree(response.getBody());
@@ -205,13 +210,7 @@ public class CarrinhoComprasService {
             RequestEntity<Object> request = new RequestEntity<>(headers, HttpMethod.PUT, uri);
 
             ResponseEntity<String> response = restTemplate.exchange(request, String.class);
-//            restTemplate.put(
-//                    "http://msprodutos:8082/api/produtos/atualizar/estoque/{idProduto}/{quantidade}/{entradaSaida}",
-//                    null,
-//                    idProduto,
-//                    quantidade,
-//                    entradaSaida
-//            );
+
         }
     }
 
