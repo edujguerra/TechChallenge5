@@ -1,5 +1,6 @@
 package br.com.fiap.mspagamento.controller;
 
+import br.com.fiap.mspagamento.infra.exception.PagamentoDuplicadoException;
 import br.com.fiap.mspagamento.model.Pagamento;
 import br.com.fiap.mspagamento.model.dto.PagamentoDTO;
 import br.com.fiap.mspagamento.service.PagamentoService;
@@ -30,6 +31,8 @@ public class PagamentoController {
             return new ResponseEntity<>(novoPagamento, HttpStatus.CREATED);
         } catch(NoSuchElementException e) {
             return new ResponseEntity<>("Carrinho de compras ou tipo de pagamento não estao disponiveis", HttpStatus.BAD_REQUEST);
+        } catch (PagamentoDuplicadoException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 

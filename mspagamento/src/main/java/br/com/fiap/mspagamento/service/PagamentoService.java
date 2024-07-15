@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import br.com.fiap.mspagamento.infra.exception.PagamentoDuplicadoException;
 import br.com.fiap.mspagamento.infra.security.SecurityFilter;
 import br.com.fiap.mspagamento.model.Enum.TipoPagamentoEnum;
 import br.com.fiap.mspagamento.model.Pagamento;
@@ -126,6 +127,12 @@ public class PagamentoService {
     }
 
     public PagamentoDTO realizarPagamento (Integer carrinhoComprasId, TipoPagamentoEnum tipoPagamentoEnum){
+
+        Pagamento meuPagamento = pagamentoRepository.findFirstByIdCarrinhoDeCompras(carrinhoComprasId).orElse(null);
+        if(meuPagamento != null && meuPagamento.getStatusPagamento() != null) {
+            System.out.println("Pagamento duplicado!");
+            throw new PagamentoDuplicadoException();
+        }
 
         int quantidadeTotalItens=0;
         PagamentoDTO pagamentoDTO = new PagamentoDTO();
