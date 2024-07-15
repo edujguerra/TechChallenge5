@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <excludeFromCompile>
+      <directory url="file://$PROJECT_DIR$/mspagamento1/src/main/resources/archetype-resources" includeSubdirectories="true" />
+    </excludeFromCompile>
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
@@ -8,6 +11,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="mscarrinhocompras" />
+        <module name="mspagamento" />
         <module name="mscliente" />
         <module name="mslogin" />
         <module name="msbatch" />
@@ -21,6 +25,7 @@
       <module name="mscarrinhocompras" options="-parameters" />
       <module name="mscliente" options="-parameters" />
       <module name="mslogin" options="-parameters" />
+      <module name="mspagamento" options="-parameters" />
       <module name="msproduto" options="-parameters" />
     </option>
   </component>

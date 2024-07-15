@@ -1,8 +1,6 @@
-package br.com.fiap.mspagamento.model;
+package br.com.fiap.mspagamento.model.dto;
 
 import br.com.fiap.mspagamento.model.Enum.TipoPagamentoEnum;
-import br.com.fiap.mspagamento.model.dto.ItemCarrinhoDTO;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,14 +10,13 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-public class Pagamento {
+public class PagamentoDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private Integer idCarrinhoDeCompras;
+
+    private List<ItemCarrinhoDTO> itensCarrinho;
 
     private int quantidadeTotal;
 
@@ -28,5 +25,4 @@ public class Pagamento {
     private TipoPagamentoEnum tipoPagamento;
 
     private String statusPagamento;
-
 }

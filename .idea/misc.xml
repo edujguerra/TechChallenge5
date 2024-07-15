@@ -9,6 +9,8 @@
         <option value="$PROJECT_DIR$/mscliente/pom.xml" />
         <option value="$PROJECT_DIR$/mslogin/pom.xml" />
         <option value="$PROJECT_DIR$/msproduto/pom.xml" />
+        <option value="$PROJECT_DIR$/mspagamento1/pom.xml" />
+        <option value="$PROJECT_DIR$/mspagamento/pom.xml" />
       </list>
     </option>
   </component>
