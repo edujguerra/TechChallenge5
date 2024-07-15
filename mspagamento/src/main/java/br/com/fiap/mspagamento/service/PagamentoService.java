@@ -129,6 +129,7 @@ public class PagamentoService {
 
         int quantidadeTotalItens=0;
         PagamentoDTO pagamentoDTO = new PagamentoDTO();
+        pagamentoDTO.setIdCarrinhoDeCompras(carrinhoComprasId);
         pagamentoDTO.setItensCarrinho(listarItensCarrinho(carrinhoComprasId));
         pagamentoDTO.setValorTotal(exibirValorTotalCarrinho(carrinhoComprasId));
         for (ItemCarrinhoDTO itemCarrinho : pagamentoDTO.getItensCarrinho()) {
@@ -138,7 +139,8 @@ public class PagamentoService {
         pagamentoDTO.setTipoPagamento(tipoPagamentoEnum);
         pagamentoDTO.setStatusPagamento("Pagamento realizado com sucesso!");
         Pagamento pagamento = toPagamento(pagamentoDTO);
-        return pagamento;
+
+        return pagamentoRepository.save(pagamento);
     }
 
     public Pagamento toPagamento (PagamentoDTO pagamentoDTO) {
