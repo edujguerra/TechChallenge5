@@ -14,10 +14,12 @@
         <module name="mspagamento" />
         <module name="mscliente" />
         <module name="mslogin" />
-        <module name="msbatch" />
         <module name="msproduto" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="msbatch" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

@@ -31,9 +31,9 @@ public class AuthConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/auth/registrar").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/auth/validate").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/auth/validar").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/usuarios/*").permitAll()
                 )
                 .build();

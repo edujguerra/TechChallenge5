@@ -68,7 +68,7 @@ public class PagamentoService {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
         headers.add("Authorization", securityFilter.getTokenBruto());
 
-        URI uri = UriComponentsBuilder.fromUriString("http://127.0.0.1:8083/api/carrinhos/itensCarrinho/{carrinhoComprasId}")
+        URI uri = UriComponentsBuilder.fromUriString("http://mscarrinhocompras:8083/api/carrinhos/itensCarrinho/{carrinhoComprasId}")
                 .buildAndExpand(carrinhoComprasId)
                 .toUri();
 
@@ -102,7 +102,7 @@ public class PagamentoService {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
         headers.add("Authorization", securityFilter.getTokenBruto());
 
-        URI uri = UriComponentsBuilder.fromUriString("http://127.0.0.1:8083/api/carrinhos/{carrinhoComprasId}")
+        URI uri = UriComponentsBuilder.fromUriString("http://mscarrinhocompras:8083/api/carrinhos/{carrinhoComprasId}")
                 .buildAndExpand(carrinhoComprasId)
                 .toUri();
 

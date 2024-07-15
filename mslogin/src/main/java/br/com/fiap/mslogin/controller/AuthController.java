@@ -18,7 +18,7 @@ public class AuthController {
 
     private AuthService authService;
 
-    @PostMapping("/register")
+    @PostMapping("/registrar")
     public ResponseEntity<UserDTO> createNewUser(@RequestBody SingUpRequest singUpRequest) {
         return ResponseEntity.status(201).body(authService.createUser(singUpRequest));
     }
@@ -28,12 +28,12 @@ public class AuthController {
         return ResponseEntity.ok(authService.authenticate(authenticationRequest));
     }
 
-    @GetMapping("/validate")
+    @GetMapping("/validar")
     public ResponseEntity<String> validate(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorizationHeader) {
         if (authorizationHeader.contains("Bearer ")) {
             authorizationHeader = authorizationHeader.replace("Bearer ","");
         }
         authService.validateToken(authorizationHeader);
-        return ResponseEntity.ok("Validated");
+        return ResponseEntity.ok("Validado!");
     }
 }

@@ -137,7 +137,7 @@ public class CarrinhoComprasService {
             MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
             headers.add("Authorization", securityFilter.getTokenBruto());
 
-            URI uri = UriComponentsBuilder.fromUriString("http://127.0.0.1:8082/api/produtos/{produtoId}")
+            URI uri = UriComponentsBuilder.fromUriString("http://msprodutos:8082/api/produtos/{produtoId}")
                     .buildAndExpand(idProduto)
                     .toUri();
 
@@ -173,7 +173,7 @@ public class CarrinhoComprasService {
             MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
             headers.add("Authorization", securityFilter.getTokenBruto());
 
-            URI uri = UriComponentsBuilder.fromUriString( "http://127.0.0.1:8082/api/produtos/{idProduto}")
+            URI uri = UriComponentsBuilder.fromUriString( "http://msprodutos:8082/api/produtos/{idProduto}")
                     .buildAndExpand(idProduto)
                     .toUri();
 
@@ -203,7 +203,7 @@ public class CarrinhoComprasService {
             MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
             headers.add("Authorization", securityFilter.getTokenBruto());
 
-            URI uri = UriComponentsBuilder.fromUriString("http://127.0.0.1:8082/api/produtos/atualizar/estoque/{idProduto}/{quantidade}/{entradaSaida}")
+            URI uri = UriComponentsBuilder.fromUriString("http://msprodutos:8082/api/produtos/atualizar/estoque/{idProduto}/{quantidade}/{entradaSaida}")
                     .buildAndExpand(idProduto, quantidade, entradaSaida)
                     .toUri();
 
