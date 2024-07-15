@@ -1,6 +1,7 @@
 package br.com.fiap.mspagamento.controller;
 
 import br.com.fiap.mspagamento.model.Pagamento;
+import br.com.fiap.mspagamento.model.dto.PagamentoDTO;
 import br.com.fiap.mspagamento.service.PagamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,7 @@ public class PagamentoController {
     @PostMapping
     public ResponseEntity<?> registrarPagamento (@RequestBody Pagamento pagamento) {
         try{
-            Pagamento novoPagamento = pagamentoService.realizarPagamento(pagamento.getIdCarrinhoDeCompras(),pagamento.getTipoPagamento());
+            PagamentoDTO novoPagamento = pagamentoService.realizarPagamento(pagamento.getIdCarrinhoDeCompras(),pagamento.getTipoPagamento());
             return new ResponseEntity<>(novoPagamento, HttpStatus.CREATED);
         } catch(NoSuchElementException e) {
             return new ResponseEntity<>("Carrinho de compras ou tipo de pagamento não estao disponiveis", HttpStatus.BAD_REQUEST);

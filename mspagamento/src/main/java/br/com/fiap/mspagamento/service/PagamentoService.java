@@ -125,7 +125,7 @@ public class PagamentoService {
         }
     }
 
-    public Pagamento realizarPagamento (Integer carrinhoComprasId, TipoPagamentoEnum tipoPagamentoEnum){
+    public PagamentoDTO realizarPagamento (Integer carrinhoComprasId, TipoPagamentoEnum tipoPagamentoEnum){
 
         int quantidadeTotalItens=0;
         PagamentoDTO pagamentoDTO = new PagamentoDTO();
@@ -140,7 +140,10 @@ public class PagamentoService {
         pagamentoDTO.setStatusPagamento("Pagamento realizado com sucesso!");
         Pagamento pagamento = toPagamento(pagamentoDTO);
 
-        return pagamentoRepository.save(pagamento);
+        pagamentoRepository.save(pagamento);
+        pagamentoDTO.setId(pagamento.getId());
+
+        return pagamentoDTO;
     }
 
     public Pagamento toPagamento (PagamentoDTO pagamentoDTO) {
