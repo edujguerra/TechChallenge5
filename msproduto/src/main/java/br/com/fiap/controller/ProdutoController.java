@@ -25,12 +25,6 @@ public class ProdutoController {
         return service.buscarTodos();
     }
 
-    @GetMapping("/teste")
-    public String buscarUm() {
-
-        return "Produto Ok !!!!";
-    }
-
     @PostMapping
     public ResponseEntity<Object> salvar(@RequestBody Produto produto) {
 

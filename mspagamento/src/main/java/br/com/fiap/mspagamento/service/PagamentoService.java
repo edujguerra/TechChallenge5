@@ -16,13 +16,11 @@ import br.com.fiap.mspagamento.repository.PagamentoRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -74,27 +72,25 @@ public class PagamentoService {
                 .toUri();
 
         RequestEntity<Object> request = new RequestEntity<>(headers, HttpMethod.GET, uri);
+        try {
+            ResponseEntity<String> response = restTemplate.exchange(request, String.class);
+            JsonNode itensCarrinho = objectMapper.readTree(response.getBody());
+            List<ItemCarrinhoDTO> listaItensCarrinho = new ArrayList<ItemCarrinhoDTO>();
+            for (JsonNode itemCarrinho : itensCarrinho) {
+                ItemCarrinhoDTO itemCarrinhoDTO = new ItemCarrinhoDTO();
+                itemCarrinhoDTO.setId(itemCarrinho.get("id").asInt());
+                itemCarrinhoDTO.setIdProduto(itemCarrinho.get("idProduto").asInt());
+                itemCarrinhoDTO.setQuantidade(itemCarrinho.get("quantidade").asInt());
 
-        ResponseEntity<String> response = restTemplate.exchange(request, String.class);
-
-        if (response.getStatusCode() == HttpStatus.NOT_FOUND){
-            throw new NoSuchElementException("Carrinho de compras não encontrado");
-        }else{
-            try{
-                JsonNode itensCarrinho = objectMapper.readTree(response.getBody());
-                List<ItemCarrinhoDTO> listaItensCarrinho = new ArrayList<ItemCarrinhoDTO>();
-                for (JsonNode itemCarrinho : itensCarrinho) {
-                    ItemCarrinhoDTO itemCarrinhoDTO = new ItemCarrinhoDTO();
-                    itemCarrinhoDTO.setId(itemCarrinho.get("id").asInt());
-                    itemCarrinhoDTO.setIdProduto(itemCarrinho.get("idProduto").asInt());
-                    itemCarrinhoDTO.setQuantidade(itemCarrinho.get("quantidade").asInt());
-
-                    listaItensCarrinho.add(itemCarrinhoDTO);
-                }
-                return listaItensCarrinho;
-            }catch(IOException e){
-                throw new RuntimeException("Erro no método listar itens carrinho");
+                listaItensCarrinho.add(itemCarrinhoDTO);
             }
+            return listaItensCarrinho;
+        } catch (HttpServerErrorException e) {
+            throw new NoSuchElementException("Carrinho de compras não encontrado");
+        } catch (NoSuchElementException e) {
+            throw new NoSuchElementException("Carrinho de compras não encontrado");
+        } catch(IOException e){
+            throw new RuntimeException("Erro no método listar itens carrinho");
         }
     }
 

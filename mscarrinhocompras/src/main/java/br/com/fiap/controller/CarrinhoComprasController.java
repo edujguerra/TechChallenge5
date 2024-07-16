@@ -57,19 +57,6 @@ public class CarrinhoComprasController {
         return carrinhoComprasService.obterCarrinhoCompras(carrinhoComprasId);
     }
 
-    @GetMapping("/teste")
-    public String obterCarrinhoComprasPorIdTeste() {
-        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-        headers.add("Authorization", securityFilter.getTokenBruto());
-        RequestEntity<Object> request = new RequestEntity<>(
-                headers, HttpMethod.GET,
-                URI.create("http://127.0.0.1:8082/api/produtos/teste"));
-        ResponseEntity<String> response = restTemplate.exchange(request, String.class);
-
-        return "Ok passou: " + securityFilter.getTokenBruto()
-                + "  Produto : " + response.getBody();
-    }
-
     @GetMapping("/status/{statusCarrinhoCompras}")
     public ResponseEntity<?> obterCarrinhoComprasPorStatus(@PathVariable String statusCarrinhoCompras) {
         try {
