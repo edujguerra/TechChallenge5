@@ -1,0 +1,666 @@
+{
+	"info": {
+		"_postman_id": "e7f0a450-14af-4b6c-a8d3-b7e50d66eaed",
+		"name": "TechChallente5",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24391466",
+		"_collection_link": "https://martian-spaceship-547664.postman.co/workspace/JavaTech---CodeBank~0e951b14-647e-4d2c-82ed-cab0f45e4bac/collection/24391466-e7f0a450-14af-4b6c-a8d3-b7e50d66eaed?action=share&source=collection_link&creator=24391466"
+	},
+	"item": [
+		{
+			"name": "mslogin",
+			"item": [
+				{
+					"name": "localhost:8081/auth/registrar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Julio\",\r\n    \"password\": \"password\",\r\n    \"email\": \"julio@gmail.com\",\r\n    \"role\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8099/api/auth/registrar",
+							"host": [
+								"localhost"
+							],
+							"port": "8099",
+							"path": [
+								"api",
+								"auth",
+								"registrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"password\",\r\n    \"email\": \"julio@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8099/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8099",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8081/auth/validar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJqdWxpb0BnbWFpbC5jb20iLCJpYXQiOjE3MjEwODE2NzUsImV4cCI6MTcyMTA4NzA3NSwiaXNzIjoiQVBJIENvbWVyY2lvIn0.Iftozvc7H0Kj-vEPVnL9GH3FLx67CokuLrN5y_JqyFE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8099/api/auth/validar",
+							"host": [
+								"localhost"
+							],
+							"port": "8099",
+							"path": [
+								"api",
+								"auth",
+								"validar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "mscliente",
+			"item": [
+				{
+					"name": "localhost:8083/api/usuarios/{id}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ1VTVE9NRVIiLCJjYXJ0SWQiOiJmZDIzOGMzMS0zYjZmLTQxNTEtYTEyOS1iMmMzZjRkYTYxYWEiLCJ1c2VySWQiOjEsInN1YiI6Imp1bGlvQGdtYWlsLmNvbSIsImlhdCI6MTcyMDY1NDEyNCwiZXhwIjoxNzIwNjU1OTI0LCJpc3MiOiJBUEkgQ29tZXJjaW8ifQ.YJFItwnjHscilqpco4dU99eSkVJa9H2t-k2YvAu5cXk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/clientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8083/api/clientes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ1VTVE9NRVIiLCJjYXJ0SWQiOiJmZDIzOGMzMS0zYjZmLTQxNTEtYTEyOS1iMmMzZjRkYTYxYWEiLCJ1c2VySWQiOjEsInN1YiI6Imp1bGlvQGdtYWlsLmNvbSIsImlhdCI6MTcyMDY1NDEyNCwiZXhwIjoxNzIwNjU1OTI0LCJpc3MiOiJBUEkgQ29tZXJjaW8ifQ.YJFItwnjHscilqpco4dU99eSkVJa9H2t-k2YvAu5cXk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/clientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8081/api/clientes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ1VTVE9NRVIiLCJjYXJ0SWQiOiJmZDIzOGMzMS0zYjZmLTQxNTEtYTEyOS1iMmMzZjRkYTYxYWEiLCJ1c2VySWQiOjEsInN1YiI6Imp1bGlvQGdtYWlsLmNvbSIsImlhdCI6MTcyMDY1NDEyNCwiZXhwIjoxNzIwNjU1OTI0LCJpc3MiOiJBUEkgQ29tZXJjaW8ifQ.YJFItwnjHscilqpco4dU99eSkVJa9H2t-k2YvAu5cXk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\" : \"Julio\",\r\n    \"email\" : \"email\",\r\n    \"cep\" : \"95020190\",\r\n    \"cpf\":\"123\",\r\n    \"complemento\" : \"ap 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/clientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "msproduto",
+			"item": [
+				{
+					"name": "http://localhost:8082/api/produtos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJqdWxpb0BnbWFpbC5jb20iLCJpYXQiOjE3MjA1MzY2NDQsImV4cCI6MTcyMDUzODQ0NCwiaXNzIjoiQVBJIENvbWVyY2lvIn0.xxTw-UpQ7QyNHqZwTbrV-byPlCeTdjXYKwk5C-k4SV0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/produtos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8082/api/produtos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ1VTVE9NRVIiLCJjYXJ0SWQiOiJmZDIzOGMzMS0zYjZmLTQxNTEtYTEyOS1iMmMzZjRkYTYxYWEiLCJ1c2VySWQiOjEsInN1YiI6Imp1bGlvQGdtYWlsLmNvbSIsImlhdCI6MTcyMDY1NDEyNCwiZXhwIjoxNzIwNjU1OTI0LCJpc3MiOiJBUEkgQ29tZXJjaW8ifQ.YJFItwnjHscilqpco4dU99eSkVJa9H2t-k2YvAu5cXk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"TV LED\",\r\n    \"descricao\": \"50 polegadas\",\r\n    \"quantidade_estoque\": 20,\r\n    \"preco\": 2300.00\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/produtos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8082/api/produtos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ1VTVE9NRVIiLCJjYXJ0SWQiOiJmZDIzOGMzMS0zYjZmLTQxNTEtYTEyOS1iMmMzZjRkYTYxYWEiLCJ1c2VySWQiOjEsInN1YiI6Imp1bGlvQGdtYWlsLmNvbSIsImlhdCI6MTcyMDY1NDEyNCwiZXhwIjoxNzIwNjU1OTI0LCJpc3MiOiJBUEkgQ29tZXJjaW8ifQ.YJFItwnjHscilqpco4dU99eSkVJa9H2t-k2YvAu5cXk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/produtos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "mscarrinho",
+			"item": [
+				{
+					"name": "http://localhost:8083/api/carrinhos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJqdWxpb0BnbWFpbC5jb20iLCJpYXQiOjE3MjA5ODYyNDksImV4cCI6MTcyMDk4ODA0OSwiaXNzIjoiQVBJIENvbWVyY2lvIn0.jdFlYIEjvxHEHLWLQ5lGMTr4i6SQEADesbcONji6P60",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeCliente\": \"Julio\",\r\n    \"cpfCliente\": \"123\",\r\n    \"itensCarrinho\": [\r\n        {\r\n            \"idProduto\": 1,\r\n            \"quantidade\": 2\r\n        }\r\n    ],\r\n    \"cep\": \"95020190\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/carrinhos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"carrinhos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8083/api/carrinhos Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ1VTVE9NRVIiLCJjYXJ0SWQiOiJmZDIzOGMzMS0zYjZmLTQxNTEtYTEyOS1iMmMzZjRkYTYxYWEiLCJ1c2VySWQiOjEsInN1YiI6Imp1bGlvQGdtYWlsLmNvbSIsImlhdCI6MTcyMDY1NDEyNCwiZXhwIjoxNzIwNjU1OTI0LCJpc3MiOiJBUEkgQ29tZXJjaW8ifQ.YJFItwnjHscilqpco4dU99eSkVJa9H2t-k2YvAu5cXk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/carrinhos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"carrinhos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8083/api/carrinhos Copy 2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ1VTVE9NRVIiLCJjYXJ0SWQiOiJmZDIzOGMzMS0zYjZmLTQxNTEtYTEyOS1iMmMzZjRkYTYxYWEiLCJ1c2VySWQiOjEsInN1YiI6Imp1bGlvQGdtYWlsLmNvbSIsImlhdCI6MTcyMDY1NDEyNCwiZXhwIjoxNzIwNjU1OTI0LCJpc3MiOiJBUEkgQ29tZXJjaW8ifQ.YJFItwnjHscilqpco4dU99eSkVJa9H2t-k2YvAu5cXk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/carrinhos/teste",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"carrinhos",
+								"teste"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8083/api/carrinhos Copy 3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ1VTVE9NRVIiLCJjYXJ0SWQiOiJmZDIzOGMzMS0zYjZmLTQxNTEtYTEyOS1iMmMzZjRkYTYxYWEiLCJ1c2VySWQiOjEsInN1YiI6Imp1bGlvQGdtYWlsLmNvbSIsImlhdCI6MTcyMDY1NDEyNCwiZXhwIjoxNzIwNjU1OTI0LCJpc3MiOiJBUEkgQ29tZXJjaW8ifQ.YJFItwnjHscilqpco4dU99eSkVJa9H2t-k2YvAu5cXk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/carrinhos/teste",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"carrinhos",
+								"teste"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8083/api/carrinhos//itensCarrinho/{carrinhoComprasId}",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ1VTVE9NRVIiLCJjYXJ0SWQiOiJmZDIzOGMzMS0zYjZmLTQxNTEtYTEyOS1iMmMzZjRkYTYxYWEiLCJ1c2VySWQiOjEsInN1YiI6Imp1bGlvQGdtYWlsLmNvbSIsImlhdCI6MTcyMDY1NDEyNCwiZXhwIjoxNzIwNjU1OTI0LCJpc3MiOiJBUEkgQ29tZXJjaW8ifQ.YJFItwnjHscilqpco4dU99eSkVJa9H2t-k2YvAu5cXk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/carrinhos/itensCarrinho/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"carrinhos",
+								"itensCarrinho",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8083/api/pagamentos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ1VTVE9NRVIiLCJjYXJ0SWQiOiJmZDIzOGMzMS0zYjZmLTQxNTEtYTEyOS1iMmMzZjRkYTYxYWEiLCJ1c2VySWQiOjEsInN1YiI6Imp1bGlvQGdtYWlsLmNvbSIsImlhdCI6MTcyMDY1NDEyNCwiZXhwIjoxNzIwNjU1OTI0LCJpc3MiOiJBUEkgQ29tZXJjaW8ifQ.YJFItwnjHscilqpco4dU99eSkVJa9H2t-k2YvAu5cXk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/carrinhos/itensCarrinho/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"carrinhos",
+								"itensCarrinho",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "mspagamento",
+			"item": [
+				{
+					"name": "http://localhost:8089/api/pagamentos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ1VTVE9NRVIiLCJjYXJ0SWQiOiJmZDIzOGMzMS0zYjZmLTQxNTEtYTEyOS1iMmMzZjRkYTYxYWEiLCJ1c2VySWQiOjEsInN1YiI6Imp1bGlvQGdtYWlsLmNvbSIsImlhdCI6MTcyMDY1NDEyNCwiZXhwIjoxNzIwNjU1OTI0LCJpc3MiOiJBUEkgQ29tZXJjaW8ifQ.YJFItwnjHscilqpco4dU99eSkVJa9H2t-k2YvAu5cXk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8089/api/pagamentos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8089",
+							"path": [
+								"api",
+								"pagamentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8089/api/pagamentos/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8089/api/pagamentos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8089",
+							"path": [
+								"api",
+								"pagamentos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8089/api/pagamentos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8089/api/pagamentos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8089",
+							"path": [
+								"api",
+								"pagamentos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
