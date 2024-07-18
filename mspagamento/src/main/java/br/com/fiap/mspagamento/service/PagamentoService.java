@@ -42,6 +42,8 @@ public class PagamentoService {
     @Autowired
     private ObjectMapper objectMapper;
 
+    public PagamentoService() {}
+
     public PagamentoService(PagamentoRepository repository) {
         this.pagamentoRepository = repository;
     }

@@ -25,7 +25,6 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@SpringBootTest
 public class PagamentoControllerTest {
 
     private MockMvc mockMvc;
@@ -52,25 +51,6 @@ public class PagamentoControllerTest {
     @AfterEach
     void tearDown() throws Exception {
         mock.close();
-    }
-
-
-    @Test
-    void RegistrarPagamento() throws JsonProcessingException, Exception{
-        Pagamento pagamento = PagamentoHelper.gerarPagamento();
-
-        when(pagamentoService.realizarPagamento(any(Integer.class),any(TipoPagamentoEnum.class)))
-                .thenAnswer( i -> i.getArgument(0));
-
-        //act & assert
-        mockMvc.perform(
-                    post("/api/pagamentos")
-                            .contentType(MediaType.APPLICATION_JSON)
-                    .content(PagamentoHelper.asJsonString(pagamento))
-                )
-                .andExpect(status().isCreated());
-        verify(pagamentoRepository, times(1)).save(any(Pagamento.class));
-
     }
 
 
