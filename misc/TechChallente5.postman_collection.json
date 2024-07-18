@@ -104,7 +104,7 @@
 			"name": "mscliente",
 			"item": [
 				{
-					"name": "localhost:8083/api/usuarios/{id}",
+					"name": "localhost:8081/api/clientes/{id}",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -133,7 +133,7 @@
 					"response": []
 				},
 				{
-					"name": "localhost:8083/api/clientes",
+					"name": "localhost:8081/api/clientes",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -488,7 +488,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8083/api/carrinhos//itensCarrinho/{carrinhoComprasId}",
+					"name": "http://localhost:8083/api/carrinhos/itensCarrinho/{carrinhoComprasId}",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -532,7 +532,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8083/api/pagamentos",
+					"name": "http://localhost:8089/api/pagamentos",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
